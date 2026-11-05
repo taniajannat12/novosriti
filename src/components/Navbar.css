@@ -1,0 +1,275 @@
+
+.site-navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 76px;
+  z-index: 9000;
+  background: rgba(7, 15, 29, 0.92);
+  border-bottom: 1px solid rgba(61, 214, 198, 0.13);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.navbar-inner {
+  width: min(1440px, calc(100% - 80px));
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* NovoSriti custom orbital logo */
+
+.brand-symbol {
+  position: relative;
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(61, 214, 198, 0.35);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(61, 214, 198, 0.12),
+    rgba(7, 15, 29, 0.2) 70%
+  );
+  box-shadow: 0 0 15px rgba(61, 214, 198, 0.09);
+}
+
+.brand-planet {
+  position: absolute;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #b8fff3, #3dd6c6 55%, #167d83);
+  box-shadow: 0 0 12px rgba(61, 214, 198, 0.75);
+}
+
+.brand-orbit {
+  position: absolute;
+  width: 32px;
+  height: 13px;
+  border: 1.3px solid #3dd6c6;
+  border-radius: 50%;
+}
+
+.brand-orbit-one {
+  transform: rotate(-35deg);
+}
+
+.brand-orbit-two {
+  width: 32px;
+  height: 13px;
+  border-color: rgba(232, 189, 115, 0.85);
+  transform: rotate(48deg);
+}
+
+.brand-star {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #e8bd73;
+  box-shadow: 0 0 7px rgba(232, 189, 115, 0.8);
+}
+
+.brand-star-one {
+  top: 3px;
+  right: 5px;
+}
+
+.brand-star-two {
+  bottom: 4px;
+  left: 5px;
+  width: 3px;
+  height: 3px;
+  background: #3dd6c6;
+}
+
+.navbar-brand:hover .brand-symbol {
+  border-color: rgba(61, 214, 198, 0.8);
+  box-shadow: 0 0 20px rgba(61, 214, 198, 0.2);
+  transform: rotate(12deg);
+}
+
+.brand-symbol {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.brand-name {
+  color: #f3f6fb;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  line-height: 1.1;
+}
+
+.brand-name > span {
+  color: #3dd6c6;
+}
+
+.brand-name small {
+  display: block;
+  margin-top: 5px;
+  color: #8093a9;
+  font-size: 7px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 29px;
+  height: 100%;
+}
+
+.navbar-link {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: #aab8c9;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+  transition: color 0.25s ease;
+}
+
+.navbar-link:hover,
+.navbar-link.active {
+  color: #3dd6c6;
+}
+
+.nav-active-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #3dd6c6;
+  box-shadow: 0 0 10px rgba(61, 214, 198, 0.6);
+}
+
+.navbar-explore {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 16px;
+  border: 1px solid rgba(61, 214, 198, 0.5);
+  border-radius: 7px;
+  color: #3dd6c6;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+
+.navbar-explore:hover {
+  background: rgba(61, 214, 198, 0.1);
+  box-shadow: 0 0 20px rgba(61, 214, 198, 0.12);
+  transform: translateY(-2px);
+}
+
+.navbar-menu-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid rgba(61, 214, 198, 0.25);
+  color: #3dd6c6;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 900px) {
+  .navbar-inner {
+    width: calc(100% - 40px);
+  }
+
+  .navbar-links {
+    gap: 17px;
+  }
+
+  .navbar-link {
+    font-size: 11px;
+  }
+
+  .navbar-explore {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 700px) {
+  .site-navbar {
+    height: 68px;
+  }
+
+  .navbar-inner {
+    width: calc(100% - 32px);
+  }
+
+  .navbar-menu-btn {
+    display: flex;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    height: auto;
+    padding: 15px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: rgba(7, 15, 29, 0.98);
+    border-bottom: 1px solid rgba(61, 214, 198, 0.2);
+    backdrop-filter: blur(18px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: 0.25s ease;
+  }
+
+  .navbar-links.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .navbar-link {
+    height: 46px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .nav-active-line {
+    left: auto;
+    right: 0;
+    bottom: 12px;
+    width: 4px;
+    height: 20px;
+    border-radius: 4px;
+  }
+
+  .navbar-explore {
+    justify-content: center;
+    margin-top: 15px;
+    padding: 13px;
+  }
+}

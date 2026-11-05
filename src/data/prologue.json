@@ -1,0 +1,89 @@
+{
+  "welcome": {
+    "eyebrow": "A NASA Space Apps Challenge Story",
+    "title": "NovoSriti",
+    "subtitle": "Abandoned, but not forgotten.",
+    "description": "Every piece of equipment has a story. Some are still waiting to be heard.",
+    "button": "Begin the journey"
+  },
+  "prologue": {
+    "eyebrow": "The Prologue",
+    "title": "What remains after we leave?",
+    "description": "Humans have explored the Moon and Mars, leaving machines and instruments behind. They may be silent now, but their stories are still part of exploration.",
+    "button": "Explore the stories"
+  },
+  "chapters": [
+    {
+      "number": "01",
+      "year": "1969",
+      "title": "The silent mirrors",
+      "location": "The Moon",
+      "object": "Apollo Lunar Laser Ranging Retroreflectors",
+      "description": "Astronauts left special mirrors on the Moon. Scientists still send laser beams toward them to measure the distance between Earth and the Moon.",
+      "truth": "FACT",
+      "truthText": "Apollo astronauts placed laser retroreflectors on the lunar surface. They are still used for scientific measurements.",
+      "question": "How can a mirror help us measure the Moon?",
+      "source": "https://science.nasa.gov/moon/"
+    },
+    {
+      "number": "02",
+      "year": "1969–1972",
+      "title": "Listening to the Moon",
+      "location": "The Moon",
+      "object": "Apollo Seismometers",
+      "description": "Apollo astronauts left instruments that listened for moonquakes. These devices helped scientists understand what happens beneath the lunar surface.",
+      "truth": "FACT",
+      "truthText": "Apollo missions deployed seismometers to study seismic activity on the Moon.",
+      "question": "Can the Moon have earthquakes?",
+      "source": "https://science.nasa.gov/moon/"
+    },
+    {
+      "number": "03",
+      "year": "1976",
+      "title": "The first visitors",
+      "location": "Mars",
+      "object": "Viking Landers",
+      "description": "The Viking landers reached Mars and sent back images and scientific data. They helped humans learn more about the red planet.",
+      "truth": "FACT",
+      "truthText": "NASA's Viking 1 and Viking 2 landers successfully operated on the surface of Mars.",
+      "question": "What did the first landers teach us about Mars?",
+      "source": "https://science.nasa.gov/mission/viking/"
+    },
+    {
+      "number": "04",
+      "year": "2004",
+      "title": "The explorers that kept going",
+      "location": "Mars",
+      "object": "Spirit and Opportunity",
+      "description": "These twin rovers explored Mars for years. Their missions lasted far longer than originally planned, helping scientists study the planet's past.",
+      "truth": "FACT",
+      "truthText": "Spirit and Opportunity were NASA Mars Exploration Rovers. Both operated far beyond their planned primary mission.",
+      "question": "How long can a rover keep exploring?",
+      "source": "https://science.nasa.gov/mission/mer/"
+    },
+    {
+      "number": "05",
+      "year": "2021",
+      "title": "A little helicopter, a big achievement",
+      "location": "Mars",
+      "object": "Ingenuity",
+      "description": "Ingenuity arrived on Mars with the Perseverance rover. It became the first aircraft to make a powered, controlled flight on another planet.",
+      "truth": "FACT",
+      "truthText": "Ingenuity completed the first powered, controlled flight on another planet. Its mission ended in 2024.",
+      "question": "How did a small helicopter fly on Mars?",
+      "source": "https://science.nasa.gov/mission/mars-2020-perseverance/"
+    },
+    {
+      "number": "06",
+      "year": "1977–Present",
+      "title": "A message beyond the stars",
+      "location": "Deep Space",
+      "object": "Voyager 1",
+      "description": "Voyager 1 continues its journey through interstellar space. Its story reminds us that exploration can reach far beyond the worlds we visit.",
+      "truth": "FACT",
+      "truthText": "Voyager 1 launched in 1977 and became the first spacecraft to enter interstellar space.",
+      "question": "How far can human curiosity travel?",
+      "source": "https://science.nasa.gov/mission/voyager/"
+    }
+  ]
+}

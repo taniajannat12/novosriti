@@ -1,0 +1,3083 @@
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap");
+
+@import "tailwindcss";
+
+/* =========================================
+   01. ROOT & RESET
+========================================= */
+
+:root {
+  --bg: #070a12;
+  --bg-deep: #04070d;
+  --bg-soft: #0c1320;
+  --panel: #111b2a;
+  --panel-light: #172437;
+  --white: #f1f0e9;
+  --silver: #b1bbc8;
+  --muted: #788697;
+  --gold: #e8bd70;
+  --gold-light: #f3d59b;
+  --teal: #76cfc5;
+  --red: #bd765d;
+  --border: rgba(255, 255, 255, 0.12);
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "DM Sans", Arial, sans-serif;
+  --mono: "DM Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+  background: var(--bg);
+}
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: var(--sans);
+  overflow-x: hidden;
+}
+
+body,
+button,
+a {
+  font-family: var(--sans);
+}
+
+button {
+  color: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font-size: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  color: var(--bg);
+  background: var(--gold);
+}
+
+.novosriti {
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 10%, rgba(35, 55, 85, 0.12), transparent 45%),
+    var(--bg);
+}
+
+/* =========================================
+   02. GLOBAL DETAILS
+========================================= */
+
+.section-label {
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.23em;
+  line-height: 1.8;
+  text-transform: uppercase;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 78px;
+  padding: 0 6vw;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(5, 8, 15, 0.82);
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  color: var(--white);
+  font-family: var(--serif);
+  font-size: 21px;
+  letter-spacing: 0.07em;
+  line-height: 1;
+}
+
+.brand span {
+  color: var(--gold);
+}
+
+.brand small {
+  margin-top: 6px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.18em;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.topbar-location {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+}
+
+/* =========================================
+   03. SOUND BUTTON
+========================================= */
+
+.sound-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 36px;
+  padding: 0 13px;
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  background: transparent;
+  color: var(--silver);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  transition: 0.3s ease;
+}
+
+.sound-button:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.sound-indicator {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 14px;
+}
+
+.sound-indicator span {
+  width: 2px;
+  height: 5px;
+  border-radius: 4px;
+  background: var(--gold);
+}
+
+.sound-button[aria-pressed="true"] .sound-indicator span {
+  animation: soundBars 0.8s ease-in-out infinite alternate;
+}
+
+.sound-indicator span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.sound-indicator span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes soundBars {
+  from { height: 4px; }
+  to { height: 13px; }
+}
+
+/* =========================================
+   04. LANDING
+========================================= */
+
+.landing {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+  padding: 130px 9vw 90px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.landing::before {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  background:
+    radial-gradient(ellipse at 80% 48%, rgba(39, 82, 119, 0.2), transparent 45%),
+    linear-gradient(90deg, #070a12 0%, rgba(7, 10, 18, 0.96) 35%, rgba(7, 10, 18, 0.3) 100%);
+}
+
+.landing-stars {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.65;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 70% 10%, #fff 50%, transparent 100%),
+    radial-gradient(2px 2px at 35% 65%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 90% 75%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 50% 40%, #fff 50%, transparent 100%),
+    radial-gradient(1px 1px at 20% 80%, #fff 50%, transparent 100%);
+  background-size: 300px 300px;
+  animation: starsDrift 35s linear infinite;
+}
+
+.landing-content {
+  position: relative;
+  z-index: 4;
+  width: 58%;
+  max-width: 740px;
+  animation: landingReveal 1.2s ease both;
+}
+
+.landing-content h1 {
+  margin-top: 32px;
+  font-family: var(--serif);
+  font-size: clamp(65px, 8.6vw, 122px);
+  font-weight: 400;
+  line-height: 0.99;
+  letter-spacing: -0.055em;
+}
+
+.landing-content h1 span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.landing-description {
+  max-width: 450px;
+  margin-top: 30px;
+  color: var(--silver);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.begin-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 38px;
+  min-height: 54px;
+  margin-top: 38px;
+  padding: 0 23px;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  transition: 0.35s ease;
+}
+
+.begin-button span {
+  font-size: 18px;
+}
+
+.begin-button:hover {
+  background: transparent;
+  color: var(--gold);
+  transform: translateY(-3px);
+}
+
+.landing-footnote {
+  margin-top: 75px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+}
+
+.landing-earth {
+  position: absolute;
+  top: 50%;
+  right: -11%;
+  width: min(65vw, 850px);
+  aspect-ratio: 1;
+  transform: translateY(-45%);
+  animation: earthFloat 9s ease-in-out infinite;
+}
+
+.earth-glow {
+  position: absolute;
+  inset: -12%;
+  border-radius: 50%;
+  background: rgba(60, 135, 185, 0.18);
+  filter: blur(65px);
+}
+
+.earth-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.85;
+  filter: saturate(0.85) brightness(0.72);
+  -webkit-mask-image: radial-gradient(circle, #000 57%, transparent 73%);
+  mask-image: radial-gradient(circle, #000 57%, transparent 73%);
+}
+
+.landing-coordinate {
+  position: absolute;
+  right: 7%;
+  bottom: 100px;
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 10px;
+  line-height: 1.8;
+  letter-spacing: 0.1em;
+}
+
+.landing-coordinate span {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.landing-scroll {
+  position: absolute;
+  bottom: 35px;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transform: translateX(-50%);
+}
+
+.landing-scroll span {
+  width: 1px;
+  height: 35px;
+  background: linear-gradient(var(--gold), transparent);
+  animation: scrollLine 1.8s ease-in-out infinite;
+}
+
+.landing-scroll p {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+}
+
+/* =========================================
+   05. STORY PROGRESS
+========================================= */
+
+.story-progress {
+  position: fixed;
+  top: 100px;
+  left: 6vw;
+  z-index: 80;
+  width: 155px;
+  pointer-events: none;
+}
+
+.story-progress > span {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.13em;
+}
+
+.story-progress b {
+  margin-left: 8px;
+  color: var(--gold);
+  font-weight: 400;
+}
+
+.progress-track {
+  width: 100%;
+  height: 2px;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gold);
+  transition: width 0.5s ease;
+}
+
+/* =========================================
+   06. QUICK CHAPTER NAVIGATION
+========================================= */
+
+.quick-chapter-nav {
+  position: fixed;
+  top: 50%;
+  right: 24px;
+  z-index: 80;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transform: translateY(-50%);
+}
+
+.quick-chapter-nav > span {
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.13em;
+  writing-mode: vertical-rl;
+}
+
+.quick-chapter-nav button {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: rgba(7, 10, 18, 0.7);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  transition: 0.3s ease;
+}
+
+.quick-chapter-nav button:hover,
+.quick-chapter-nav button.quick-active {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--bg);
+  transform: scale(1.12);
+}
+
+/* =========================================
+   07. PROLOGUE BASE
+========================================= */
+
+.prologue {
+  position: relative;
+  background: var(--bg);
+}
+
+.story-scene {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+  padding: 130px 10vw 100px;
+  overflow: hidden;
+  isolation: isolate;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.story-scene::before {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 15% 25%, rgba(255,255,255,.7) 50%, transparent 100%),
+    radial-gradient(1px 1px at 75% 15%, rgba(255,255,255,.6) 50%, transparent 100%),
+    radial-gradient(1px 1px at 45% 80%, rgba(255,255,255,.6) 50%, transparent 100%),
+    radial-gradient(1px 1px at 90% 65%, rgba(255,255,255,.5) 50%, transparent 100%);
+  background-size: 350px 350px;
+}
+
+.story-scene.is-visible .scene-content {
+  animation: contentReveal 1s cubic-bezier(.2,.7,.2,1) both;
+}
+
+.scene-number {
+  position: absolute;
+  top: 105px;
+  left: 10vw;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.scene-content {
+  position: relative;
+  z-index: 5;
+  width: min(640px, 60%);
+}
+
+.scene-content h2 {
+  margin-top: 25px;
+  font-family: var(--serif);
+  font-size: clamp(42px, 6vw, 79px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.scene-copy {
+  max-width: 490px;
+  margin-top: 24px;
+  color: var(--silver);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.scene-bottom {
+  position: absolute;
+  right: 10vw;
+  bottom: 35px;
+  left: 10vw;
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+}
+
+.scene-bottom span:last-child {
+  color: var(--gold);
+}
+
+/* =========================================
+   08. PROLOGUE SCENE 01
+========================================= */
+
+.scene-p1 {
+  background:
+    radial-gradient(ellipse at 80% 65%, rgba(140, 67, 41, 0.18), transparent 48%),
+    #090d16;
+}
+
+.signal-date {
+  margin-top: 25px;
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.scene-content .silence-text {
+  margin-top: 25px;
+  color: var(--gold-light);
+  font-family: var(--serif);
+  font-size: 22px;
+  font-style: italic;
+}
+
+.mars-scene {
+  position: absolute;
+  right: -4%;
+  bottom: 0;
+  width: 62%;
+  height: 80%;
+  overflow: hidden;
+}
+
+.mars-planet {
+  position: absolute;
+  right: 5%;
+  bottom: -18%;
+  width: 85%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 25%, rgba(245, 175, 113, 0.8), transparent 18%),
+    radial-gradient(circle at 35% 35%, #c16d45, #773b2d 52%, #281b21 80%);
+  box-shadow:
+    inset -55px -35px 90px rgba(0, 0, 0, 0.7),
+    0 0 100px rgba(183, 91, 52, 0.13);
+  animation: marsFloat 12s ease-in-out infinite;
+}
+
+.mars-surface {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  opacity: 0.6;
+  background:
+    radial-gradient(ellipse at 20% 60%, rgba(55, 28, 28, 0.5), transparent 22%),
+    radial-gradient(ellipse at 65% 45%, rgba(54, 26, 26, 0.45), transparent 25%),
+    radial-gradient(ellipse at 40% 80%, rgba(241, 164, 111, 0.3), transparent 30%);
+}
+
+.mars-horizon {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 23%;
+  background: linear-gradient(0deg, #0b0a0e, transparent);
+}
+
+.signal-line {
+  position: absolute;
+  top: 40%;
+  left: 0;
+  width: 95%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
+  transform: rotate(-12deg);
+}
+
+.signal-line span {
+  position: absolute;
+  top: -3px;
+  left: 45%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 20px var(--gold);
+  animation: signalTravel 3s linear infinite;
+}
+
+.mars-caption {
+  position: absolute;
+  right: 10%;
+  bottom: 40px;
+  color: rgba(255, 255, 255, 0.55);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+}
+
+/* =========================================
+   09. PROLOGUE SCENE 02
+========================================= */
+
+.scene-p2 {
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(80, 102, 130, 0.1), transparent 55%),
+    #080c15;
+}
+
+.scene-content-right {
+  margin-left: auto;
+}
+
+.truth-card {
+  max-width: 460px;
+  margin-top: 28px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  background: rgba(17, 27, 42, 0.65);
+}
+
+.truth-tag {
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+.truth-card p {
+  margin-top: 15px;
+  font-family: var(--serif);
+  font-size: 23px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.truth-card small {
+  display: block;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.p2-orbit {
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  width: 410px;
+  height: 410px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+.orbit-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(118, 207, 197, 0.2);
+  border-radius: 50%;
+  transform: rotateX(65deg) rotateZ(-25deg);
+}
+
+.orbit-two {
+  inset: 15%;
+  border-color: rgba(232, 189, 112, 0.35);
+  transform: rotateX(65deg) rotateZ(35deg);
+}
+
+.orbit-dot {
+  position: absolute;
+  top: 10%;
+  right: 12%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 22px var(--gold);
+}
+
+.orbit-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 190px;
+  height: 190px;
+  border: 1px solid rgba(232, 189, 112, 0.3);
+  border-radius: 50%;
+  background: radial-gradient(circle, #263447, #0a111d 70%);
+  color: var(--gold);
+  font-family: var(--serif);
+  font-size: 78px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 80px rgba(232, 189, 112, 0.08);
+}
+
+.orbit-caption {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.16em;
+  transform: translateX(-50%);
+}
+
+/* =========================================
+   10. PROLOGUE SCENE 03
+========================================= */
+
+.scene-p3 {
+  justify-content: center;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 80%, rgba(105, 130, 155, 0.15), transparent 50%),
+    #080c15;
+}
+
+.centered-content {
+  width: min(700px, 80%);
+  text-align: center;
+}
+
+.abandoned-question {
+  font-size: clamp(75px, 12vw, 145px) !important;
+  letter-spacing: -0.07em !important;
+}
+
+.abandoned-question span {
+  color: var(--gold);
+}
+
+.centered-content .scene-copy {
+  margin-inline: auto;
+}
+
+.moon-stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 45px;
+}
+
+.stat-symbol {
+  color: var(--gold);
+  font-size: 32px;
+}
+
+.moon-stat p {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  line-height: 1.8;
+  letter-spacing: 0.1em;
+  text-align: left;
+}
+
+.p3-moon {
+  position: absolute;
+  right: -12%;
+  bottom: -35%;
+  width: 55%;
+  aspect-ratio: 1;
+  opacity: 0.23;
+  pointer-events: none;
+}
+
+.p3-moon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(0.5) brightness(0.8);
+  -webkit-mask-image: radial-gradient(circle, #000 50%, transparent 75%);
+  mask-image: radial-gradient(circle, #000 50%, transparent 75%);
+}
+
+/* =========================================
+   11. PROLOGUE SCENE 04
+========================================= */
+
+.scene-p4 {
+  align-items: center;
+  background:
+    radial-gradient(ellipse at 80% 50%, rgba(70, 110, 125, 0.12), transparent 50%),
+    #080c15;
+}
+
+.p4-content {
+  width: min(100%, 850px);
+}
+
+.p4-content h2 {
+  font-size: clamp(38px, 5.5vw, 68px);
+}
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 35px;
+}
+
+.concept-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 170px;
+  padding: 22px;
+  border: 1px solid var(--border);
+  background: rgba(17, 27, 42, 0.68);
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.concept-card:hover,
+.concept-card-open {
+  border-color: rgba(232, 189, 112, 0.5);
+  background: rgba(24, 36, 55, 0.85);
+  transform: translateY(-3px);
+}
+
+.concept-symbol {
+  color: var(--gold);
+  font-size: 23px;
+}
+
+.concept-title {
+  margin-top: 14px;
+  color: var(--white);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+}
+
+.concept-subtitle {
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.concept-action {
+  margin-top: 15px;
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+.concept-description {
+  display: block;
+  margin-top: 13px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  color: var(--silver);
+  font-size: 11px;
+  line-height: 1.8;
+  animation: contentReveal 0.35s ease both;
+}
+
+.keyboard-hint {
+  margin-top: 20px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+/* =========================================
+   12. PROLOGUE SCENE 05
+========================================= */
+
+.scene-p5 {
+  background:
+    radial-gradient(ellipse at 50% 75%, rgba(102, 119, 145, 0.1), transparent 55%),
+    #080c15;
+}
+
+.p5-content {
+  width: min(100%, 1000px);
+}
+
+.p5-content h2 {
+  font-size: clamp(42px, 6vw, 75px);
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 65px;
+}
+
+.rule-item {
+  min-height: 190px;
+  padding: 20px;
+  border-top: 1px solid rgba(232, 189, 112, 0.5);
+  background: linear-gradient(180deg, rgba(20, 31, 47, 0.7), transparent);
+}
+
+.rule-number {
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 10px;
+}
+
+.rule-item h3 {
+  margin-top: 25px;
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.rule-item p {
+  margin-top: 12px;
+  color: var(--silver);
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+/* =========================================
+   13. PROLOGUE SCENE 06
+========================================= */
+
+.scene-p6 {
+  background:
+    radial-gradient(ellipse at 65% 45%, rgba(46, 87, 130, 0.14), transparent 50%),
+    #080c15;
+}
+
+.p6-content {
+  width: min(650px, 65%);
+}
+
+.p6-content h2 {
+  font-size: clamp(45px, 6.2vw, 80px);
+}
+
+.p6-content h2 span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.p6-earth {
+  position: absolute;
+  top: 7%;
+  right: -8%;
+  width: 52%;
+  aspect-ratio: 1;
+  opacity: 0.58;
+}
+
+.p6-earth img,
+.p6-moon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  -webkit-mask-image: radial-gradient(circle, #000 52%, transparent 73%);
+  mask-image: radial-gradient(circle, #000 52%, transparent 73%);
+}
+
+.p6-moon {
+  position: absolute;
+  right: 18%;
+  bottom: -15%;
+  width: 22%;
+  aspect-ratio: 1;
+  opacity: 0.4;
+}
+
+.chapter-entry-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 40px;
+  min-height: 51px;
+  margin-top: 35px;
+  padding: 0 22px;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  transition: 0.3s ease;
+}
+
+.chapter-entry-button:hover {
+  background: transparent;
+  color: var(--gold);
+}
+
+.scroll-leave-earth {
+  margin-top: 28px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.13em;
+}
+
+.prologue-chapter-picker {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+  max-width: 510px;
+  margin-top: 18px;
+}
+
+.prologue-chapter-picker button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 38px;
+  padding: 0 11px;
+  border: 1px solid var(--border);
+  background: rgba(9, 15, 25, 0.65);
+  color: var(--silver);
+  font-family: var(--mono);
+  font-size: 8px;
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.prologue-chapter-picker button:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.prologue-chapter-picker button span {
+  color: var(--gold);
+}
+
+.prologue-chapter-picker button b {
+  margin-left: auto;
+  color: var(--muted);
+}
+
+/* =========================================
+   14. CHAPTER INTRO
+========================================= */
+
+.chapter-intro {
+  position: relative;
+  padding: 130px 10vw 100px;
+  border-top: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse at 80% 50%, rgba(60, 93, 121, 0.12), transparent 50%),
+    #080c15;
+}
+
+.chapter-intro h2 {
+  margin-top: 22px;
+  font-family: var(--serif);
+  font-size: clamp(50px, 7vw, 85px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.chapter-intro h2 span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.chapter-intro > p {
+  max-width: 500px;
+  margin-top: 20px;
+  color: var(--silver);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.chapter-selector {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 55px;
+}
+
+.chapter-selector button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-height: 130px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  background: rgba(16, 25, 39, 0.75);
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.chapter-selector button:hover,
+.chapter-selector button.selected {
+  border-color: var(--gold);
+  background: rgba(232, 189, 112, 0.07);
+  transform: translateY(-4px);
+}
+
+.chapter-selector button > span {
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 9px;
+}
+
+.chapter-selector button strong {
+  margin-top: 15px;
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.chapter-selector button small {
+  margin-top: 7px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+}
+
+/* =========================================
+   15. ALL CHAPTERS BASE
+========================================= */
+
+.all-chapters {
+  position: relative;
+}
+
+.chapter-slide {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100svh;
+  padding: 125px 9vw 65px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  isolation: isolate;
+  scroll-margin-top: 0;
+}
+
+.chapter-slide::before {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  content: "";
+  background:
+    radial-gradient(ellipse at 75% 45%, rgba(69, 111, 132, 0.12), transparent 45%),
+    #090e18;
+}
+
+.chapter-slide::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  width: 45%;
+  height: 100%;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(22, 39, 57, 0.13));
+}
+
+.chapter-slide.is-visible .chapter-text {
+  animation: contentReveal 0.85s ease both;
+}
+
+.chapter-slide.is-visible .chapter-visual {
+  animation: visualReveal 1s ease both;
+}
+
+.chapter-slide-top {
+  position: absolute;
+  top: 98px;
+  right: 9vw;
+  left: 9vw;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.15em;
+}
+
+.chapter-slide-top span:first-child {
+  color: var(--gold);
+}
+
+.chapter-slide-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(35px, 6vw, 85px);
+  width: 100%;
+  max-width: 1300px;
+  margin: 25px auto 45px;
+}
+
+.chapter-text {
+  position: relative;
+  z-index: 3;
+}
+
+.chapter-eyebrow {
+  margin-top: 20px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+}
+
+.chapter-text h2 {
+  max-width: 630px;
+  margin-top: 17px;
+  font-family: var(--serif);
+  font-size: clamp(43px, 5.5vw, 73px);
+  font-weight: 400;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+
+.chapter-text h2 span {
+  display: inline;
+}
+
+.chapter-description {
+  max-width: 510px;
+  margin-top: 24px;
+  color: var(--silver);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.chapter-question,
+.chapter-explanation,
+.chapter-fact {
+  max-width: 510px;
+  margin-top: 22px;
+  padding: 17px 19px;
+  border-left: 2px solid var(--gold);
+  background: rgba(18, 29, 44, 0.72);
+}
+
+.chapter-question > span,
+.chapter-explanation > span,
+.chapter-fact > span {
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.14em;
+}
+
+.chapter-question p {
+  margin-top: 9px;
+  color: var(--white);
+  font-family: var(--serif);
+  font-size: 19px;
+}
+
+.chapter-explanation {
+  border-left-color: var(--teal);
+}
+
+.chapter-explanation > span {
+  color: var(--teal);
+}
+
+.chapter-explanation p,
+.chapter-fact p {
+  margin-top: 9px;
+  color: var(--silver);
+  font-size: 10px;
+  line-height: 1.85;
+}
+
+.chapter-fact {
+  border-left-color: var(--muted);
+}
+
+.chapter-fact > span {
+  color: var(--muted);
+}
+
+/* =========================================
+   16. CHAPTER VISUAL AREA
+========================================= */
+
+.chapter-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+}
+
+.figure-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 455px;
+  perspective: 1100px;
+  transform-style: preserve-3d;
+}
+
+.figure-stage::before {
+  position: absolute;
+  width: 75%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  content: "";
+  background: radial-gradient(circle, rgba(92, 135, 160, 0.12), transparent 70%);
+  filter: blur(10px);
+}
+
+.figure-orbit {
+  position: absolute;
+  width: 82%;
+  height: 38%;
+  border: 1px solid rgba(118, 207, 197, 0.2);
+  border-radius: 50%;
+  transform: rotateX(68deg) rotateZ(-20deg);
+}
+
+.orbit-b {
+  width: 105%;
+  height: 48%;
+  border-color: rgba(232, 189, 112, 0.15);
+  transform: rotateX(68deg) rotateZ(30deg);
+}
+
+.model {
+  position: relative;
+  z-index: 3;
+  transform-style: preserve-3d;
+  animation: modelFloat 6s ease-in-out infinite;
+}
+
+.figure-floor {
+  position: absolute;
+  bottom: 10%;
+  width: 55%;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  filter: blur(16px);
+}
+
+.figure-caption {
+  position: absolute;
+  bottom: 5px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.17em;
+  text-align: center;
+}
+
+/* =========================================
+   17. FIGURE HOTSPOTS
+========================================= */
+
+.figure-hotspot {
+  position: absolute;
+  z-index: 12;
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: rgba(232, 189, 112, 0.14);
+  box-shadow: 0 0 0 5px rgba(232, 189, 112, 0.08);
+  transition: 0.25s ease;
+}
+
+.figure-hotspot span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.figure-hotspot:hover,
+.figure-hotspot.hotspot-active {
+  background: var(--gold);
+  box-shadow: 0 0 0 9px rgba(232, 189, 112, 0.12), 0 0 25px rgba(232, 189, 112, 0.4);
+  transform: scale(1.18);
+}
+
+.figure-hotspot.hotspot-active span {
+  background: var(--bg);
+}
+
+.hotspot-one {
+  top: 8%;
+  right: 10%;
+}
+
+.hotspot-two {
+  bottom: 23%;
+  left: 5%;
+}
+
+.hotspot-three {
+  right: 0;
+  bottom: 12%;
+}
+
+/* =========================================
+   18. CHAPTER 01 — MIRROR
+========================================= */
+
+.mirror-model {
+  width: 300px;
+  height: 270px;
+  transform: rotateX(-8deg) rotateY(-22deg);
+}
+
+.mirror-stand {
+  position: absolute;
+  top: 155px;
+  left: 143px;
+  width: 13px;
+  height: 85px;
+  border: 1px solid #a68c5d;
+  background: linear-gradient(90deg, #5f5137, #d3bd89, #675538);
+  transform: rotateX(15deg);
+}
+
+.mirror-frame {
+  position: absolute;
+  top: 25px;
+  left: 45px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 7px;
+  width: 210px;
+  height: 160px;
+  padding: 13px;
+  border: 8px solid #b7a176;
+  background: linear-gradient(145deg, #1d2a38, #090f19);
+  box-shadow: 15px 20px 35px rgba(0, 0, 0, 0.55), inset 0 0 20px rgba(0, 0, 0, 0.6);
+  transform: rotateY(12deg) rotateX(-5deg);
+}
+
+.mirror-frame span {
+  border: 2px solid #e0cf9e;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 25%, #fff8dc, #a18b5d 60%, #37372f);
+  box-shadow: inset 0 0 7px rgba(255, 255, 255, 0.7), 0 0 4px rgba(232, 189, 112, 0.25);
+}
+
+.mirror-base {
+  position: absolute;
+  bottom: 10px;
+  left: 75px;
+  width: 160px;
+  height: 28px;
+  border: 2px solid #b49d6b;
+  background: linear-gradient(135deg, #c7ae7a, #675638);
+  transform: rotateX(65deg);
+}
+
+.laser-beam {
+  position: absolute;
+  top: 95px;
+  left: -40px;
+  width: 390px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--teal), #fff, var(--teal), transparent);
+  box-shadow: 0 0 12px var(--teal);
+  opacity: 0.7;
+  transform: rotate(-15deg);
+  animation: laserPulse 2.8s ease-in-out infinite;
+}
+
+/* =========================================
+   19. CHAPTER 02 — SEISMOMETER
+========================================= */
+
+.seismo-model {
+  width: 300px;
+  height: 290px;
+  transform: rotateY(-20deg);
+}
+
+.seismo-body {
+  position: absolute;
+  top: 95px;
+  left: 65px;
+  width: 175px;
+  height: 125px;
+  border: 3px solid #ad9a71;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #d2bd8c, #706145);
+  box-shadow: 12px 20px 30px rgba(0, 0, 0, 0.5);
+}
+
+.seismo-body span {
+  position: absolute;
+  left: 18px;
+  width: 130px;
+  height: 2px;
+  background: rgba(255, 245, 207, 0.5);
+}
+
+.seismo-body span:nth-child(1) { top: 30px; }
+.seismo-body span:nth-child(2) { top: 60px; }
+.seismo-body span:nth-child(3) { top: 90px; }
+
+.seismo-top {
+  position: absolute;
+  top: 75px;
+  left: 75px;
+  width: 155px;
+  height: 28px;
+  border: 2px solid #d1bc8b;
+  background: linear-gradient(135deg, #bda779, #5b503c);
+  transform: skewY(-8deg);
+}
+
+.seismo-antenna {
+  position: absolute;
+  top: 12px;
+  left: 150px;
+  width: 5px;
+  height: 67px;
+  background: linear-gradient(90deg, #7d6c4c, #e2d1a4);
+}
+
+.seismo-antenna::after {
+  position: absolute;
+  top: -8px;
+  left: -5px;
+  width: 15px;
+  height: 15px;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  content: "";
+}
+
+.seismo-base {
+  position: absolute;
+  bottom: 35px;
+  left: 43px;
+  width: 220px;
+  height: 18px;
+  border: 1px solid #a58f63;
+  background: linear-gradient(90deg, #65553b, #d0b984, #65553b);
+  transform: rotateX(60deg);
+}
+
+.seismo-wave {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  width: 250px;
+  height: 55px;
+  border-bottom: 1px solid var(--teal);
+  border-radius: 50%;
+  opacity: 0.5;
+  transform: translateX(-50%) rotateX(65deg);
+}
+
+.wave-two {
+  width: 310px;
+  height: 75px;
+  opacity: 0.25;
+}
+
+/* =========================================
+   20. CHAPTER 03 — VIKING LANDER
+========================================= */
+
+.lander-model {
+  width: 330px;
+  height: 300px;
+  transform: rotateY(-22deg) rotateX(-5deg);
+}
+
+.lander-body {
+  position: absolute;
+  top: 105px;
+  left: 82px;
+  width: 160px;
+  height: 90px;
+  border: 3px solid #b9a47b;
+  background: linear-gradient(145deg, #dfcb9c, #716347);
+  box-shadow: 12px 17px 30px rgba(0, 0, 0, 0.5);
+}
+
+.lander-body::before {
+  position: absolute;
+  top: -24px;
+  left: 8px;
+  width: 138px;
+  height: 25px;
+  content: "";
+  background: linear-gradient(145deg, #d7c28e, #796847);
+  transform: skewY(-9deg);
+}
+
+.lander-window {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 42px;
+  height: 34px;
+  border: 3px solid #99865e;
+  background: linear-gradient(135deg, #24465a, #0b1824);
+}
+
+.lander-panel {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  width: 65px;
+  height: 40px;
+  border: 2px solid #a08b64;
+  background: repeating-linear-gradient(90deg, #182e46 0 8px, #4a6981 9px 10px);
+}
+
+.lander-antenna {
+  position: absolute;
+  top: 25px;
+  left: 158px;
+  width: 5px;
+  height: 70px;
+  background: #bba77d;
+}
+
+.lander-dish {
+  position: absolute;
+  top: 24px;
+  left: 115px;
+  width: 85px;
+  height: 43px;
+  border: 4px solid #d2bd8c;
+  border-radius: 50% 50% 40% 40%;
+  background: linear-gradient(135deg, #526477, #182638);
+  transform: rotateX(35deg);
+}
+
+.lander-leg {
+  position: absolute;
+  top: 180px;
+  width: 11px;
+  height: 85px;
+  background: linear-gradient(90deg, #716044, #d3bd8c);
+  transform-origin: top;
+}
+
+.leg-one { left: 92px; transform: rotate(22deg); }
+.leg-two { left: 230px; transform: rotate(-22deg); }
+.leg-three { left: 160px; height: 70px; transform: rotate(3deg); }
+
+.lander-foot {
+  position: absolute;
+  width: 40px;
+  height: 9px;
+  border-radius: 8px;
+  background: #c6b082;
+}
+
+.foot-one { bottom: 28px; left: 67px; }
+.foot-two { bottom: 28px; right: 46px; }
+.foot-three { bottom: 28px; left: 143px; }
+
+/* =========================================
+   21. CHAPTER 04 — ROVER
+========================================= */
+
+.rover-model {
+  width: 350px;
+  height: 300px;
+  transform: rotateX(-8deg) rotateY(-22deg);
+}
+
+.rover-body {
+  position: absolute;
+  top: 115px;
+  left: 65px;
+  width: 225px;
+  height: 80px;
+  border: 3px solid #9ba6a7;
+  background: linear-gradient(145deg, #d3d4c9, #68747a);
+  box-shadow: 12px 18px 30px rgba(0, 0, 0, 0.5);
+}
+
+.rover-body::before {
+  position: absolute;
+  top: -22px;
+  left: 12px;
+  width: 190px;
+  height: 25px;
+  content: "";
+  background: linear-gradient(135deg, #d9c794, #74684e);
+  transform: skewY(-8deg);
+}
+
+.rover-panel {
+  position: absolute;
+  top: -80px;
+  left: 28px;
+  width: 160px;
+  height: 58px;
+  border: 4px solid #a48e62;
+  background: repeating-linear-gradient(90deg, #142e49 0 20px, #3e6681 21px 23px);
+  transform: rotateX(12deg);
+}
+
+.panel-two {
+  top: -66px;
+  left: 42px;
+  width: 130px;
+  height: 43px;
+  opacity: 0.5;
+  transform: rotateX(12deg) translateZ(-10px);
+}
+
+.rover-mast {
+  position: absolute;
+  top: 25px;
+  left: 175px;
+  width: 10px;
+  height: 90px;
+  background: linear-gradient(90deg, #6c7373, #d4c59b);
+}
+
+.rover-camera {
+  position: absolute;
+  top: 12px;
+  left: 148px;
+  width: 65px;
+  height: 42px;
+  border: 3px solid #bca77a;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #31576d, #111d2c);
+  box-shadow: inset 0 0 12px #000;
+}
+
+.rover-arm {
+  position: absolute;
+  top: 175px;
+  right: 5px;
+  width: 75px;
+  height: 9px;
+  border-radius: 6px;
+  background: #b9aa83;
+  transform: rotate(-25deg);
+  transform-origin: left;
+}
+
+.rover-wheel {
+  position: absolute;
+  top: 180px;
+  width: 52px;
+  height: 75px;
+  border: 7px solid #69747b;
+  border-radius: 42%;
+  background: repeating-linear-gradient(0deg, #252d35 0 8px, #626d74 9px 13px);
+  box-shadow: inset 0 0 9px #000, 0 8px 15px rgba(0, 0, 0, 0.5);
+}
+
+.wheel-one { left: 43px; }
+.wheel-two { left: 150px; }
+.wheel-three { left: 257px; }
+
+/* =========================================
+   22. CHAPTER 05 — INGENUITY
+========================================= */
+
+.helicopter-model {
+  width: 330px;
+  height: 310px;
+  transform: rotateY(-18deg);
+}
+
+.heli-body {
+  position: absolute;
+  top: 125px;
+  left: 125px;
+  width: 85px;
+  height: 72px;
+  border: 3px solid #b7a780;
+  background: linear-gradient(145deg, #e2d4ae, #726a55);
+  box-shadow: 12px 18px 25px rgba(0, 0, 0, 0.45);
+}
+
+.heli-camera {
+  position: absolute;
+  right: -13px;
+  top: 23px;
+  width: 25px;
+  height: 25px;
+  border: 3px solid #b7a780;
+  border-radius: 50%;
+  background: #17374c;
+}
+
+.heli-mast {
+  position: absolute;
+  top: 70px;
+  left: 164px;
+  width: 7px;
+  height: 57px;
+  background: linear-gradient(90deg, #827452, #e4d3a7);
+}
+
+.heli-rotor {
+  position: absolute;
+  left: 34px;
+  width: 260px;
+  height: 6px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #75694d, #e0d3ad, #75694d);
+  transform-origin: center;
+}
+
+.rotor-top {
+  top: 67px;
+  animation: rotorSpin 2.8s linear infinite;
+}
+
+.rotor-bottom {
+  top: 85px;
+  left: 75px;
+  width: 180px;
+  height: 4px;
+  opacity: 0.6;
+  animation: rotorSpinReverse 2.8s linear infinite;
+}
+
+.heli-rotor span {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #b9a980;
+  transform: translateX(-50%);
+}
+
+.heli-leg {
+  position: absolute;
+  top: 190px;
+  width: 7px;
+  height: 60px;
+  background: #c5b58c;
+  transform-origin: top;
+}
+
+.leg-left {
+  left: 143px;
+  transform: rotate(20deg);
+}
+
+.leg-right {
+  left: 193px;
+  transform: rotate(-20deg);
+}
+
+.heli-body::after {
+  position: absolute;
+  bottom: -52px;
+  left: -24px;
+  width: 130px;
+  height: 6px;
+  border-radius: 10px;
+  content: "";
+  background: #bfae83;
+}
+
+/* =========================================
+   23. CHAPTER 06 — VOYAGER
+========================================= */
+
+.voyager-model {
+  width: 360px;
+  height: 320px;
+  transform: rotateY(-20deg) rotateX(-8deg);
+}
+
+.voyager-dish {
+  position: absolute;
+  top: 55px;
+  left: 55px;
+  width: 175px;
+  height: 175px;
+  border: 7px solid #c7b68d;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, #d8d0b9 0 8%, #66717b 9% 16%, #bca982 17% 22%, #334354 23% 100%);
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5), 12px 20px 35px rgba(0, 0, 0, 0.45);
+  transform: rotateX(16deg);
+}
+
+.dish-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 35px;
+  height: 35px;
+  border: 4px solid #d7c79f;
+  border-radius: 50%;
+  background: #26394c;
+  transform: translate(-50%, -50%);
+}
+
+.voyager-body {
+  position: absolute;
+  top: 140px;
+  left: 195px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 90px;
+  height: 70px;
+  padding: 10px;
+  border: 3px solid #b8a77d;
+  background: linear-gradient(145deg, #e1d2a8, #776b50);
+  transform: rotateY(20deg);
+}
+
+.voyager-body span {
+  height: 3px;
+  background: rgba(50, 55, 54, 0.55);
+}
+
+.voyager-boom {
+  position: absolute;
+  top: 170px;
+  left: 255px;
+  width: 100px;
+  height: 5px;
+  background: #c4b58c;
+  transform: rotate(-18deg);
+  transform-origin: left;
+}
+
+.voyager-boom::after {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 24px;
+  height: 24px;
+  border: 4px solid #c4b58c;
+  border-radius: 50%;
+  content: "";
+  background: #26384b;
+}
+
+.voyager-record {
+  position: absolute;
+  top: 230px;
+  left: 205px;
+  width: 45px;
+  height: 45px;
+  border: 3px solid #e0c87e;
+  border-radius: 50%;
+  background: radial-gradient(circle, #e8d7a2 0 12%, #9e8348 13% 18%, #d7c17f 19% 100%);
+  box-shadow: 0 0 18px rgba(232, 189, 112, 0.15);
+}
+
+.voyager-antenna {
+  position: absolute;
+  top: 10px;
+  left: 210px;
+  width: 4px;
+  height: 85px;
+  background: #c6b78f;
+  transform: rotate(16deg);
+}
+
+/* =========================================
+   24. HOTSPOT LIST
+========================================= */
+
+.hotspot-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.hotspot-list button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  background: rgba(13, 21, 33, 0.8);
+  color: var(--silver);
+  font-size: 9px;
+  transition: 0.3s ease;
+}
+
+.hotspot-list button > span {
+  color: var(--gold);
+  font-size: 15px;
+}
+
+.hotspot-list button:hover,
+.hotspot-list button.hotspot-list-active {
+  border-color: var(--gold);
+  background: rgba(232, 189, 112, 0.08);
+  color: var(--gold);
+}
+
+.hotspot-explanation {
+  width: 100%;
+  max-width: 440px;
+  margin-top: 15px;
+  padding: 17px 19px;
+  border: 1px solid rgba(118, 207, 197, 0.25);
+  border-left: 2px solid var(--teal);
+  background: rgba(15, 28, 41, 0.9);
+  animation: contentReveal 0.35s ease both;
+}
+
+.hotspot-explanation > span {
+  color: var(--teal);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.13em;
+}
+
+.hotspot-explanation strong {
+  display: block;
+  margin-top: 9px;
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.hotspot-explanation p {
+  margin-top: 7px;
+  color: var(--silver);
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+/* =========================================
+   25. CHAPTER BACKGROUNDS
+========================================= */
+
+.chapter-slide-1::before {
+  background:
+    radial-gradient(ellipse at 75% 45%, rgba(179, 145, 85, 0.14), transparent 48%),
+    #090e18;
+}
+
+.chapter-slide-2::before {
+  background:
+    radial-gradient(ellipse at 75% 45%, rgba(93, 155, 155, 0.13), transparent 48%),
+    #090e18;
+}
+
+.chapter-slide-3::before {
+  background:
+    radial-gradient(ellipse at 75% 45%, rgba(178, 104, 65, 0.15), transparent 48%),
+    #0c0c12;
+}
+
+.chapter-slide-4::before {
+  background:
+    radial-gradient(ellipse at 75% 45%, rgba(173, 111, 71, 0.14), transparent 48%),
+    #0b0d13;
+}
+
+.chapter-slide-5::before {
+  background:
+    radial-gradient(ellipse at 75% 45%, rgba(102, 135, 148, 0.15), transparent 48%),
+    #090e18;
+}
+
+.chapter-slide-6::before {
+  background:
+    radial-gradient(ellipse at 75% 45%, rgba(95, 115, 164, 0.16), transparent 48%),
+    #080b15;
+}
+
+/* =========================================
+   26. CHAPTER BOTTOM NAVIGATION
+========================================= */
+
+.chapter-bottom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1300px;
+  margin: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.chapter-bottom-nav button {
+  min-height: 37px;
+  padding: 0 13px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--silver);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  transition: 0.3s ease;
+}
+
+.chapter-bottom-nav button:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.chapter-bottom-nav span {
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+}
+
+/* =========================================
+   27. ARCHIVE
+========================================= */
+
+.archive-section {
+  position: relative;
+  padding: 130px 10vw;
+  border-top: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse at 80% 10%, rgba(75, 105, 135, 0.1), transparent 45%),
+    #070a12;
+}
+
+.archive-heading {
+  max-width: 690px;
+  margin-bottom: 60px;
+}
+
+.archive-heading h2 {
+  margin-top: 24px;
+  font-family: var(--serif);
+  font-size: clamp(48px, 7vw, 82px);
+  font-weight: 400;
+  line-height: 1.08;
+}
+
+.archive-heading h2 span {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.archive-heading p {
+  max-width: 490px;
+  margin-top: 22px;
+  color: var(--silver);
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+.archive-list {
+  border-top: 1px solid var(--border);
+}
+
+.archive-item {
+  display: grid;
+  grid-template-columns: 55px minmax(0, 1fr) 150px 30px;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  min-height: 120px;
+  padding: 20px 15px;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  text-align: left;
+  transition: 0.35s ease;
+}
+
+.archive-item:hover {
+  padding-right: 25px;
+  padding-left: 25px;
+  background: rgba(232, 189, 112, 0.045);
+}
+
+.archive-number {
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+.archive-main {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.archive-main small {
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+
+.archive-main strong {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.archive-main > span {
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.7;
+}
+
+.archive-status {
+  color: var(--teal);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+
+.archive-arrow {
+  color: var(--gold);
+  font-size: 19px;
+  transition: transform 0.3s ease;
+}
+
+.archive-item:hover .archive-arrow {
+  transform: translate(4px, -4px);
+}
+
+/* =========================================
+   28. FOOTER
+========================================= */
+
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 70px 25px 45px;
+  border-top: 1px solid var(--border);
+  background: #04070d;
+  text-align: center;
+}
+
+.footer-brand {
+  font-family: var(--serif);
+  font-size: 30px;
+  letter-spacing: 0.08em;
+}
+
+.footer-brand span {
+  color: var(--gold);
+}
+
+.site-footer > p {
+  margin-top: 17px;
+  color: var(--gold);
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+}
+
+.site-footer > small {
+  max-width: 500px;
+  margin-top: 25px;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.8;
+}
+
+.back-to-top {
+  min-height: 40px;
+  margin-top: 30px;
+  padding: 0 17px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--silver);
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  transition: 0.3s ease;
+}
+
+.back-to-top:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+/* =========================================
+   29. ANIMATIONS
+========================================= */
+
+@keyframes landingReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes contentReveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes visualReveal {
+  from {
+    opacity: 0;
+    transform: translateX(35px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes earthFloat {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -18px;
+  }
+}
+
+@keyframes marsFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes modelFloat {
+  0%, 100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -12px;
+  }
+}
+
+@keyframes rotorSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotorSpinReverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes signalTravel {
+  0% {
+    left: 10%;
+    opacity: 0;
+  }
+  25% { opacity: 1; }
+  100% {
+    left: 90%;
+    opacity: 0;
+  }
+}
+
+@keyframes laserPulse {
+  0%, 100% {
+    opacity: 0.2;
+    box-shadow: 0 0 5px var(--teal);
+  }
+  50% {
+    opacity: 0.9;
+    box-shadow: 0 0 18px var(--teal);
+  }
+}
+
+@keyframes scrollLine {
+  0% {
+    transform: scaleY(0.4);
+    transform-origin: top;
+    opacity: 0.3;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+  100% {
+    transform: scaleY(0.4);
+    transform-origin: bottom;
+    opacity: 0.3;
+  }
+}
+
+@keyframes starsDrift {
+  from { background-position: 0 0; }
+  to { background-position: 300px 300px; }
+}
+
+/* =========================================
+   30. TABLET RESPONSIVE
+========================================= */
+
+@media (max-width: 1050px) {
+  .landing-content {
+    width: 65%;
+  }
+
+  .landing-earth {
+    right: -20%;
+    width: 75vw;
+  }
+
+  .story-scene {
+    padding-right: 8vw;
+    padding-left: 8vw;
+  }
+
+  .scene-number {
+    left: 8vw;
+  }
+
+  .scene-bottom {
+    right: 8vw;
+    left: 8vw;
+  }
+
+  .chapter-slide {
+    padding-right: 7vw;
+    padding-left: 7vw;
+  }
+
+  .chapter-slide-top {
+    right: 7vw;
+    left: 7vw;
+  }
+
+  .chapter-slide-grid {
+    gap: 30px;
+  }
+
+  .chapter-text h2 {
+    font-size: clamp(40px, 5vw, 60px);
+  }
+
+  .figure-stage {
+    min-height: 390px;
+  }
+
+  .quick-chapter-nav {
+    right: 10px;
+  }
+}
+
+/* =========================================
+   31. MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+  html {
+    scroll-padding-top: 65px;
+  }
+
+  .topbar {
+    height: 65px;
+    padding: 0 20px;
+  }
+
+  .brand {
+    font-size: 18px;
+  }
+
+  .brand small {
+    font-size: 6px;
+  }
+
+  .topbar-location {
+    display: none;
+  }
+
+  .topbar-right {
+    gap: 10px;
+  }
+
+  .sound-button {
+    min-height: 32px;
+    padding: 0 10px;
+    font-size: 8px;
+  }
+
+  .landing {
+    min-height: 100svh;
+    padding: 120px 25px 100px;
+  }
+
+  .landing-content {
+    width: 100%;
+  }
+
+  .landing-content h1 {
+    font-size: clamp(58px, 15vw, 85px);
+  }
+
+  .landing-description {
+    max-width: 330px;
+    font-size: 12px;
+  }
+
+  .landing-earth {
+    top: 55%;
+    right: -38%;
+    width: 100vw;
+    opacity: 0.55;
+  }
+
+  .landing-coordinate {
+    right: 22px;
+    bottom: 90px;
+    font-size: 8px;
+  }
+
+  .landing-footnote {
+    max-width: 250px;
+    margin-top: 55px;
+    font-size: 7px;
+    line-height: 1.8;
+  }
+
+  .landing-scroll {
+    bottom: 20px;
+  }
+
+  .story-progress {
+    top: 83px;
+    left: 20px;
+    width: 100px;
+  }
+
+  .quick-chapter-nav {
+    top: auto;
+    right: 0;
+    bottom: 12px;
+    left: 0;
+    flex-direction: row;
+    justify-content: center;
+    gap: 7px;
+    padding: 8px;
+    transform: none;
+    background: rgba(5, 8, 15, 0.88);
+    backdrop-filter: blur(12px);
+  }
+
+  .quick-chapter-nav > span {
+    display: none;
+  }
+
+  .quick-chapter-nav button {
+    width: 25px;
+    height: 25px;
+    font-size: 7px;
+  }
+
+  .story-scene {
+    min-height: 100svh;
+    padding: 120px 25px 85px;
+  }
+
+  .scene-number {
+    top: 90px;
+    left: 25px;
+    font-size: 8px;
+  }
+
+  .scene-content {
+    width: 100%;
+  }
+
+  .scene-content h2 {
+    font-size: clamp(39px, 11vw, 58px);
+  }
+
+  .scene-copy {
+    font-size: 11px;
+  }
+
+  .scene-bottom {
+    right: 25px;
+    bottom: 55px;
+    left: 25px;
+    font-size: 7px;
+  }
+
+  .mars-scene {
+    right: -35%;
+    bottom: 0;
+    width: 100%;
+    height: 55%;
+    opacity: 0.5;
+  }
+
+  .mars-planet {
+    width: 100%;
+    right: 0;
+    bottom: -30%;
+  }
+
+  .scene-p1 .scene-content {
+    align-self: flex-start;
+    margin-top: 30px;
+  }
+
+  .scene-p2 .scene-content-right {
+    margin-top: 30px;
+  }
+
+  .p2-orbit {
+    top: auto;
+    bottom: 5%;
+    left: -20%;
+    width: 300px;
+    height: 300px;
+    opacity: 0.6;
+  }
+
+  .orbit-center {
+    width: 125px;
+    height: 125px;
+    font-size: 55px;
+  }
+
+  .truth-card {
+    padding: 16px;
+  }
+
+  .truth-card p {
+    font-size: 19px;
+  }
+
+  .centered-content {
+    width: 100%;
+  }
+
+  .abandoned-question {
+    font-size: clamp(65px, 18vw, 100px) !important;
+  }
+
+  .p3-moon {
+    right: -30%;
+    bottom: -15%;
+    width: 100%;
+  }
+
+  .moon-stat {
+    justify-content: center;
+  }
+
+  .p4-content h2,
+  .p5-content h2 {
+    font-size: 42px;
+  }
+
+  .concept-grid {
+    gap: 8px;
+  }
+
+  .concept-card {
+    min-height: 150px;
+    padding: 13px;
+  }
+
+  .concept-title {
+    font-size: 10px;
+  }
+
+  .concept-subtitle {
+    font-size: 9px;
+  }
+
+  .concept-description {
+    font-size: 9px;
+  }
+
+  .rules-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 30px;
+  }
+
+  .rule-item {
+    min-height: auto;
+    padding: 17px;
+  }
+
+  .rule-item h3 {
+    margin-top: 10px;
+  }
+
+  .rule-item p {
+    font-size: 10px;
+  }
+
+  .p6-content {
+    width: 100%;
+  }
+
+  .p6-content h2 {
+    font-size: clamp(43px, 12vw, 65px);
+  }
+
+  .p6-earth {
+    top: 20%;
+    right: -35%;
+    width: 100%;
+    opacity: 0.3;
+  }
+
+  .p6-moon {
+    right: 5%;
+    bottom: 0;
+    width: 35%;
+  }
+
+  .prologue-chapter-picker {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+  }
+
+  .prologue-chapter-picker button {
+    min-height: 35px;
+  }
+
+  .chapter-intro {
+    padding: 95px 25px 75px;
+  }
+
+  .chapter-intro h2 {
+    font-size: 52px;
+  }
+
+  .chapter-selector {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 35px;
+  }
+
+  .chapter-selector button {
+    min-height: 105px;
+    padding: 13px;
+  }
+
+  .chapter-selector button strong {
+    font-size: 13px;
+  }
+
+  .chapter-slide {
+    min-height: auto;
+    padding: 105px 24px 85px;
+  }
+
+  .chapter-slide-top {
+    top: 82px;
+    right: 24px;
+    left: 24px;
+    font-size: 7px;
+  }
+
+  .chapter-slide-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin: 15px auto 30px;
+  }
+
+  .chapter-text h2 {
+    font-size: clamp(42px, 12vw, 61px);
+  }
+
+  .chapter-description {
+    font-size: 11px;
+  }
+
+  .chapter-question,
+  .chapter-explanation,
+  .chapter-fact {
+    margin-top: 14px;
+    padding: 14px;
+  }
+
+  .chapter-question p {
+    font-size: 17px;
+  }
+
+  .chapter-explanation p,
+  .chapter-fact p {
+    font-size: 9px;
+  }
+
+  .figure-stage {
+    min-height: 340px;
+    overflow: hidden;
+  }
+
+  .figure-stage .model {
+    scale: 0.78;
+  }
+
+  .figure-orbit {
+    width: 100%;
+  }
+
+  .figure-caption {
+    bottom: 0;
+    font-size: 6px;
+  }
+
+  .hotspot-list {
+    gap: 6px;
+  }
+
+  .hotspot-list button {
+    min-height: 30px;
+    padding: 0 8px;
+    font-size: 8px;
+  }
+
+  .hotspot-explanation {
+    padding: 14px;
+  }
+
+  .chapter-bottom-nav {
+    gap: 8px;
+  }
+
+  .chapter-bottom-nav button {
+    min-height: 34px;
+    padding: 0 8px;
+    font-size: 7px;
+  }
+
+  .chapter-bottom-nav span {
+    font-size: 8px;
+  }
+
+  .archive-section {
+    padding: 90px 24px;
+  }
+
+  .archive-heading h2 {
+    font-size: 52px;
+  }
+
+  .archive-item {
+    grid-template-columns: 30px minmax(0, 1fr) 20px;
+    gap: 10px;
+    min-height: 105px;
+    padding: 15px 5px;
+  }
+
+  .archive-main strong {
+    font-size: 17px;
+  }
+
+  .archive-main > span {
+    font-size: 9px;
+  }
+
+  .archive-status {
+    display: none;
+  }
+
+  .archive-arrow {
+    font-size: 15px;
+  }
+
+  .site-footer {
+    padding: 55px 22px 90px;
+  }
+}
+
+/* =========================================
+   32. SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+  .landing-content h1 {
+    font-size: 55px;
+  }
+
+  .concept-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .concept-card {
+    min-height: 125px;
+  }
+
+  .chapter-selector {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .chapter-text h2 {
+    font-size: 39px;
+  }
+
+  .figure-stage {
+    min-height: 300px;
+  }
+
+  .figure-stage .model {
+    scale: 0.68;
+  }
+
+  .chapter-bottom-nav button {
+    font-size: 6px;
+  }
+}
+
+/* =========================================
+   33. ACCESSIBILITY
+========================================= */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.figure-stage {
+  position: relative;
+  width: 100%;
+  min-height: 510px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(173, 194, 211, 0.12);
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(40, 83, 112, 0.2), transparent 65%),
+    #080e18;
+}
+
+.real-3d-stage {
+  position: relative;
+  width: 100%;
+  height: 460px;
+  cursor: grab;
+}
+
+.real-3d-stage:active {
+  cursor: grabbing;
+}
+
+.real-3d-stage canvas {
+  width: 100% !important;
+  height: 100% !important;
+  outline: none;
+}
+
+.model-hint {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(205, 220, 232, 0.55);
+  font-size: 9px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.figure-caption {
+  position: relative;
+  margin: 0 0 18px;
+  color: #d6b875;
+  font-size: 9px;
+  letter-spacing: 2.5px;
+}
+
+@media (max-width: 700px) {
+  .figure-stage {
+    min-height: 370px;
+  }
+
+  .real-3d-stage {
+    height: 340px;
+  }
+}
